@@ -1,0 +1,127 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 500px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    font-size: 50px;
+    text-shadow: 
+        1px 1px 0 rgba(0, 0, 0, 0.7),  /* Sombra para a direita e embaixo */
+        -1px -1px 0 rgba(0, 0, 0, 0.7), /* Sombra para a esquerda e em cima */
+        1px -1px 0 rgba(0, 0, 0, 0.7),  /* Sombra para a direita e em cima */
+        -1px 1px 0 rgba(0, 0, 0, 0.7);  /* Sombra para a esquerda e embaixo */
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    margin-right: 5px;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+}
+
+input[type="number"] {
+    width: 50px; /* Defina a largura desejada */
+    margin: 0 5px; /* Adiciona um pequeno espaço entre os inputs */
+}
+
+
+button {
+    margin-top: 15px;
+    padding: 10px;
+    width: 100%;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+.resultado {
+    margin-top: 20px;
+    padding: 10px;
+    background: #e7f3fe;
+    border: 1px solid #b8daff;
+    border-radius: 5px;
+}
+
+.server-btn {
+    background-color: green;
+    color: black;
+    border: none;
+    padding: 10px 15px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.server-btn.selected {
+    background-color: red;
+    color: white;
+}
+
+.button-row {
+    display: flex;
+    justify-content: flex-start; /* Alinha os botões à esquerda */
+    margin-bottom: 10px; /* Espaço entre as linhas de botões */
+}
+
+/* Estilos básicos para os botões */
+.server-btn {
+    margin: 5px;
+    padding: 10px;
+    background-color: lightgray; /* Cor inicial dos botões */
+    border: none;
+    cursor: pointer;
+}
+.hidden {
+    display: none; /* Classe para esconder elementos */
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza os itens horizontalmente */
+    margin: 15px 0; /* Espaçamento vertical entre os grupos */
+    text-align: center;
+}
+#registroForm {
+    text-align: center; /* Centraliza o texto do formulário */
+}
+input[type="number"], select {
+    text-align: center; /* Centraliza o texto dentro dos inputs e select */
+    width: 200px; /* Largura opcional, ajuste conforme necessário */
+}
+
+h3 {
+    
+        text-align: center;
+        color: orange;
+        font-size: 50px;
+        text-shadow: 
+            1px 1px 0 black,  /* Sombra para a direita e embaixo */
+            -1px -1px 0 black, /* Sombra para a esquerda e em cima */
+            1px -1px 0 black,  /* Sombra para a direita e em cima */
+            -1px 1px 0 black;  /* Sombra para a esquerda e embaixo */
+    
+}
