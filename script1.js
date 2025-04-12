@@ -100,8 +100,8 @@ function removeDiv(button, boss, id) {
 // Alterna entre os conjuntos de botões com base no boss selecionado
 bossSelect.addEventListener('change', function() {
     const selectedBoss = this.value;
-    serverButtons.classList.toggle('hidden', selectedBoss !== 'Pumpkin');
-    serverButtons2.classList.toggle('hidden', selectedBoss !== 'LaCalaca');
+    serverButtons.classList.toggle('hidden', selectedBoss !== 'Bonnie');
+    serverButtons2.classList.toggle('hidden', selectedBoss !== 'Clyde');
     document.getElementById('serverButtons_3').classList.toggle('hidden', selectedBoss !== 'Rat King'); // Adiciona o M1
 });
 
