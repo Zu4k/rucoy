@@ -1,127 +1,91 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 20px;
+:root{
+  --fundo:#15121f; --painel:#1f1a2f; --borda:#352c4f; --texto:#efe9ff; --suave:#9d92bd;
+  --brasa:#ff8a1f; --verde:#2fbf5b; --azul:#3b82f6; --roxo:#a855f7; --verm:#ef4444;
+  --amarelo:#facc15; --cinza:#8b8799; --laranja:#fb923c; --cor-boss:#ff8a1f;
 }
+*{box-sizing:border-box}
+body{margin:0;padding:16px;background:var(--fundo);color:var(--texto);font-family:'Chakra Petch',Arial,sans-serif}
+button{font-family:inherit;cursor:pointer;border:0;color:#fff;transition:transform .15s,filter .15s,background .2s}
+button:active{transform:scale(.95)}
 
-.container {
-    max-width: 500px;
-    margin: auto;
-    background: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+.topo{max-width:1100px;margin:0 auto 16px;padding:18px 20px;border-radius:10px;border:1px solid var(--borda);
+  background:linear-gradient(90deg,rgba(21,18,31,.85),rgba(21,18,31,.4)),var(--logo) center/cover,#2a2140;
+  display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topo h1{margin:0;font-size:clamp(26px,5vw,42px);text-shadow:2px 2px 0 #000}
+.relogio{font-size:clamp(20px,4vw,30px);font-weight:700;color:var(--brasa);font-variant-numeric:tabular-nums}
 
-h1 {
-    text-align: center;
-    color: white;
-    font-size: 50px;
-    text-shadow: 
-        1px 1px 0 rgba(0, 0, 0, 0.7),  /* Sombra para a direita e embaixo */
-        -1px -1px 0 rgba(0, 0, 0, 0.7), /* Sombra para a esquerda e em cima */
-        1px -1px 0 rgba(0, 0, 0, 0.7),  /* Sombra para a direita e em cima */
-        -1px 1px 0 rgba(0, 0, 0, 0.7);  /* Sombra para a esquerda e embaixo */
-}
+.layout{max-width:1100px;margin:auto;display:grid;grid-template-columns:minmax(300px,380px) 1fr;gap:16px;align-items:start}
+@media(max-width:820px){.layout{grid-template-columns:1fr}}
 
-label {
-    display: block;
-    margin-top: 10px;
-    margin-right: 5px;
-}
+/* Fila (esquerda) */
+.fila-box,.registro{background:var(--painel);border:1px solid var(--borda);border-radius:10px;padding:14px}
+.fila-box{position:sticky;top:12px;max-height:calc(100vh - 24px);display:flex;flex-direction:column}
+@media(max-width:820px){.fila-box{position:static;max-height:none}}
+.fila-titulo{display:flex;justify-content:space-between;align-items:center}
+h2{margin:0;font-size:20px}
+.filtros{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.chip{background:#2b2342;padding:5px 10px;border-radius:99px;font-size:13px;border:1px solid transparent}
+.chip.ativo{background:var(--brasa);color:#1a1000;font-weight:700}
+.fila{list-style:none;margin:0;padding:0;overflow-y:auto;display:flex;flex-direction:column;gap:8px}
+.vazio{color:var(--suave);font-size:14px;text-align:center;margin:18px 0 6px}
+.vazio.oculto{display:none}
 
-input, select {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-}
+.item{position:relative;display:grid;grid-template-columns:38px 1fr auto;gap:10px;align-items:center;padding:10px;
+  background:#2a2340;border-left:5px solid var(--cor);border-radius:8px;overflow:hidden;animation:entra .45s ease-out}
+@keyframes entra{from{opacity:0;transform:translateX(-30px) scale(.95)}to{opacity:1;transform:none}}
+.item.saindo{animation:sai .3s forwards}
+@keyframes sai{to{opacity:0;transform:translateX(40px)}}
+.pos{width:38px;height:38px;border-radius:50%;background:var(--cor);color:#111;font-weight:700;font-size:18px;display:grid;place-items:center}
+.info b{font-size:22px}
+.info .boss{font-size:13px;color:var(--cor);margin-left:6px;font-weight:600}
+.info small{display:block;color:var(--suave);font-size:12px}
+.tempo{text-align:right;font-weight:700;font-size:15px;font-variant-numeric:tabular-nums}
+.tempo small{display:block;font-weight:400;font-size:11px;color:var(--suave)}
+.item .x{margin-top:6px;width:auto;background:#5a2330;color:#ffd5da;font-size:11px;padding:3px 8px;border-radius:5px;border:1px solid #8a3344}
+.item .x:hover{background:var(--verm);color:#fff}
+.barra{position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--cor);transition:width 1s linear}
 
-input[type="number"] {
-    width: 50px; /* Defina a largura desejada */
-    margin: 0 5px; /* Adiciona um pequeno espaço entre os inputs */
-}
+.item.primeiro{box-shadow:0 0 0 2px var(--brasa) inset}
+.item.aberta{animation:entra .45s ease-out,pulso 1.2s ease-in-out infinite .45s;background:#35402a}
+.item.aberta .tempo{color:#7dff9a}
+.item.atrasado{background:#43232b}
+.item.atrasado .tempo{color:#ff8a8a}
+@keyframes pulso{50%{box-shadow:0 0 14px 2px rgba(125,255,154,.55)}}
 
+/* Registro (direita) */
+.abas{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.aba{flex:1;min-width:110px;padding:10px;background:#2b2342;border-radius:8px;font-weight:600;border-bottom:4px solid transparent}
+.aba.ativa{background:var(--cor-boss);color:#111;border-bottom-color:#fff;transform:translateY(-2px)}
+.painel{border-radius:10px;padding:14px;border:1px solid var(--borda);
+  background:linear-gradient(rgba(21,18,31,.78),rgba(21,18,31,.78)),var(--img) center/cover,#2a2140}
+.painel h3{margin:0 0 10px;text-align:center;font-size:clamp(28px,6vw,44px);color:var(--cor-boss);text-shadow:2px 2px 0 #000}
+.linha{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.server-btn{min-width:48px;padding:10px 8px;border-radius:6px;font-weight:700;background:rgba(139,135,153,.55)}
+.server-btn:hover{filter:brightness(1.2)}
+.server-btn.pop{animation:pop .25s}
+@keyframes pop{50%{transform:scale(1.25)}}
+.c-verde,.server-btn.verde{background:var(--verde)}
+.c-azul,.server-btn.azul{background:var(--azul)}
+.c-roxo,.server-btn.roxo{background:var(--roxo)}
+.c-vermelho,.server-btn.vermelho{background:var(--verm)}
+.c-amarelo,.server-btn.amarelo{background:var(--amarelo);color:#222}
+.c-cinza,.server-btn.cinza{background:var(--cinza)}
+.c-laranja,.server-btn.laranja{background:var(--laranja);color:#222}
+.server-btn.vermelho{animation:piscar 1s infinite}
+@keyframes piscar{50%{box-shadow:0 0 12px var(--verm)}}
 
-button {
-    margin-top: 15px;
-    padding: 10px;
-    width: 100%;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
+.legenda{display:flex;flex-wrap:wrap;gap:6px 14px;margin:12px 0;font-size:12px;color:var(--suave)}
+.legenda i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.acoes{display:flex;flex-wrap:wrap;gap:10px;align-items:end}
+.hora-campo{display:flex;flex-direction:column;font-size:13px;color:var(--suave)}
+.hora-campo input{padding:9px;border-radius:6px;border:1px solid var(--borda);background:#2b2342;color:var(--texto);font-family:inherit;font-size:16px}
+.hora-campo small{font-size:11px;margin-top:2px}
+.grande{flex:1;min-width:180px;padding:14px;font-size:17px;font-weight:700;border-radius:8px;background:var(--verde)}
+.grande:hover{filter:brightness(1.15)}
+.mini{padding:7px 10px;font-size:12px;border-radius:6px;background:#3b3157}
+.mini.perigo{background:#7f2b36}
 
-button:hover {
-    background-color: #218838;
-}
-
-.resultado {
-    margin-top: 20px;
-    padding: 10px;
-    background: #e7f3fe;
-    border: 1px solid #b8daff;
-    border-radius: 5px;
-}
-
-.server-btn {
-    background-color: green;
-    color: black;
-    border: none;
-    padding: 10px 15px;
-    margin: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.server-btn.selected {
-    background-color: red;
-    color: white;
-}
-
-.button-row {
-    display: flex;
-    justify-content: flex-start; /* Alinha os botões à esquerda */
-    margin-bottom: 10px; /* Espaço entre as linhas de botões */
-}
-
-/* Estilos básicos para os botões */
-.server-btn {
-    margin: 5px;
-    padding: 10px;
-    background-color: lightgray; /* Cor inicial dos botões */
-    border: none;
-    cursor: pointer;
-}
-.hidden {
-    display: none; /* Classe para esconder elementos */
-}
-.form-group {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centraliza os itens horizontalmente */
-    margin: 15px 0; /* Espaçamento vertical entre os grupos */
-    text-align: center;
-}
-#registroForm {
-    text-align: center; /* Centraliza o texto do formulário */
-}
-input[type="number"], select {
-    text-align: center; /* Centraliza o texto dentro dos inputs e select */
-    width: 200px; /* Largura opcional, ajuste conforme necessário */
-}
-
-h3 {
-    
-        text-align: center;
-        color: orange;
-        font-size: 50px;
-        text-shadow: 
-            1px 1px 0 black,  /* Sombra para a direita e embaixo */
-            -1px -1px 0 black, /* Sombra para a esquerda e em cima */
-            1px -1px 0 black,  /* Sombra para a direita e em cima */
-            -1px 1px 0 black;  /* Sombra para a esquerda e embaixo */
-    
-}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,80px);background:#000d;color:#fff;padding:12px 18px;border-radius:8px;
+  opacity:0;transition:.3s;pointer-events:none;max-width:90vw;z-index:9}
+.toast.on{transform:translate(-50%,0);opacity:1}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
