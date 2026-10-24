@@ -1,20 +1,63 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Horas</title>
-    <link rel="stylesheet" href="./styles.css">
-    
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registro de BOSS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-    
-    <div class="container">
-    <img src="001.png" >
-    </div>
-    
-        
+<header class="topo" style="--logo: url('img/logozua.png')">
+  <h1>Registro de BOSS</h1>
+  <div class="relogio" id="relogio">--:--:--</div>
+</header>
 
+<main class="layout">
+  <!-- ESQUERDA: fila de quem chega primeiro -->
+  <aside class="fila-box">
+    <div class="fila-titulo">
+      <h2>Próximos a nascer</h2>
+      <button type="button" id="limparButton" class="mini perigo">Limpar tudo</button>
+    </div>
+    <div class="filtros" id="filtros"></div>
+    <ol class="fila" id="fila"></ol>
+    <p class="vazio" id="vazio">Nenhum registro ainda. Marque um servidor em vermelho e clique em Registrar.</p>
+  </aside>
+
+  <!-- DIREITA: registro -->
+  <section class="registro">
+    <nav class="abas" id="abas" role="tablist"></nav>
+
+    <div class="painel" id="painel">
+      <h3 id="painelNome"></h3>
+      <div id="grades"></div>
+    </div>
+
+    <div class="legenda">
+      <span><i class="c-verde"></i>Verde = Real</span>
+      <span><i class="c-azul"></i>Azul = Fake</span>
+      <span><i class="c-roxo"></i>Roxo = Suposto</span>
+      <span><i class="c-vermelho"></i>Vermelho = morto, pronto p/ registrar</span>
+      <span><i class="c-amarelo"></i>Amarelo = Rodado</span>
+      <span><i class="c-cinza"></i>Cinza = Limpo</span>
+      <span><i class="c-laranja"></i>Laranja = registrado</span>
+    </div>
+
+    <div class="acoes">
+      <label class="hora-campo">Hora da morte
+        <input type="time" id="hora">
+        <small>Vazio = agora</small>
+      </label>
+      <button type="button" id="registrarButton" class="grande">Registrar vermelhos</button>
+      <button type="button" id="resetarButton" class="mini">Resetar cores deste boss</button>
+    </div>
+  </section>
+</main>
+
+<div class="toast" id="toast" role="status"></div>
+<script src="./script1.js"></script>
 </body>
 </html>
 
